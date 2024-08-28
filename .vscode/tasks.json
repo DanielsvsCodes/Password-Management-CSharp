@@ -1,0 +1,59 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-all",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/Password-Management-CSharp.generated.sln"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "start-docker",
+        "command": "docker-compose",
+        "type": "shell",
+        "args": [
+          "up",
+          "--build",
+          "-d"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}/infrastructure/Docker"
+        }
+      },
+      {
+        "label": "stop-docker",
+        "command": "docker-compose",
+        "type": "shell",
+        "args": [
+          "down"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}/infrastructure/Docker"
+        }
+      },
+      {
+        "label": "build-and-start",
+        "dependsOn": ["build-all", "start-docker"],
+        "dependsOrder": "sequence",
+        "problemMatcher": []
+      },
+      {
+        "label": "build-maui-app",
+        "type": "shell",
+        "command": "dotnet",
+        "args": [
+          "run",
+          "--framework",
+          "net8.0-windows10.0.19041.0"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}/frontend/PasswordManagerApp"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }

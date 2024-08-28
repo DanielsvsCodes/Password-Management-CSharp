@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  user-management-service:
+    build:
+      context: ../../backend/UserManagementService
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MongoDb=mongodb://root:example@mongo:27017/
+
+  password-storage-service:
+    build:
+      context: ../../backend/PasswordStorageService
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MongoDb=mongodb://root:example@mongo:27017/
+
+  authentication-service:
+    build:
+      context: ../../backend/AuthenticationService
+    ports:
+      - "5003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MongoDb=mongodb://root:example@mongo:27017/
+
+  notification-service:
+    build:
+      context: ../../backend/NotificationService
+    ports:
+      - "5004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MongoDb=mongodb://root:example@mongo:27017/
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - backend-network
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  backend-network:
+    driver: bridge

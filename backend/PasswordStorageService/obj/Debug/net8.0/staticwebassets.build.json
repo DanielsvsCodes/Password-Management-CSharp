@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "+x+uQaHS0C27uqWUDzt//nw1oac9SKRswEKshdQGKjQ=",
+  "Source": "PasswordStorageService",
+  "BasePath": "_content/PasswordStorageService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

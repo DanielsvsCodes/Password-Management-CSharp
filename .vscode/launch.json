@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Docker Services",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-and-start",
+      "program": "${workspaceFolder}/backend/AuthenticationService/bin/Debug/net8.0/AuthenticationService.dll",
+      "cwd": "${workspaceFolder}/backend/AuthenticationService",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "postDebugTask": "stop-docker"
+    },
+    {
+      "name": "Launch .NET MAUI App",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/PasswordManagerApp/bin/Debug/net8.0-windows10.0.19041.0/win10-x64/PasswordManagerApp.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}/frontend/PasswordManagerApp",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "postDebugTask": "build-maui-app"
+    }
+  ]
+}
